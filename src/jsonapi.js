@@ -39,13 +39,13 @@ const apiWillDelete = createAction(API_WILL_DELETE);
 const apiDeleted = createAction(API_DELETED);
 const apiDeleteFailed = createAction(API_DELETE_FAILED);
 
-export const createResource = (resource) => {
+export const createResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillCreate(resource));
 
-    const { axiosConfig } = getState().api.endpoint;
+    const { axiosConfig } = config || getState().api.endpoint;
     const options = {
-      ... axiosConfig,
+      ...axiosConfig,
       method: 'POST',
       data: JSON.stringify({
         data: resource
@@ -113,15 +113,15 @@ export const readEndpoint = (endpoint, {
   };
 };
 
-export const updateResource = (resource) => {
+export const updateResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillUpdate(resource));
 
-    const { axiosConfig } = getState().api.endpoint;
+    const { axiosConfig } = config || getState().api.endpoint;
     const endpoint = `${resource.type}/${resource.id}`;
 
     const options = {
-      ... axiosConfig,
+      ...axiosConfig,
       method: 'PATCH',
       data: {
         data: resource
@@ -145,15 +145,15 @@ export const updateResource = (resource) => {
   };
 };
 
-export const deleteResource = (resource) => {
+export const deleteResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillDelete(resource));
 
-    const { axiosConfig } = getState().api.endpoint;
+    const { axiosConfig } = config || getState().api.endpoint;
     const endpoint = `${resource.type}/${resource.id}`;
 
     const options = {
-      ... axiosConfig,
+      ...axiosConfig,
       method: 'DELETE'
     };
 

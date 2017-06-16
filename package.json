@@ -45,6 +45,8 @@
     "fetch-mock": "^5.1.2",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.1",
+    "sigmund": "^1.0.1",
+    "transform-runtime": "0.0.0",
     "webpack": "^1.12.12"
   },
   "dependencies": {
