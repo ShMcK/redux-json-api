@@ -43,7 +43,8 @@ export const createResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillCreate(resource));
 
-    const { axiosConfig } = config || getState().api.endpoint;
+    const axiosConfig = config || getState().api.endpoint.axiosConfig;
+
     const options = {
       ...axiosConfig,
       method: 'POST',
@@ -117,7 +118,7 @@ export const updateResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillUpdate(resource));
 
-    const { axiosConfig } = config || getState().api.endpoint;
+    const axiosConfig = config || getState().api.endpoint.axiosConfig;
     const endpoint = `${resource.type}/${resource.id}`;
 
     const options = {
@@ -149,7 +150,7 @@ export const deleteResource = (resource, config) => {
   return (dispatch, getState) => {
     dispatch(apiWillDelete(resource));
 
-    const { axiosConfig } = config || getState().api.endpoint;
+    const axiosConfig = config || getState().api.endpoint.axiosConfig;
     const endpoint = `${resource.type}/${resource.id}`;
 
     const options = {
